@@ -1,15 +1,22 @@
 package solution
 
-func twoSum(nums []int, target int) []int {
-	numMap := make(map[int]int)
+func reverseList(head *ListNode) *ListNode {
 
-	for i, num := range nums {
-		complement := target - num
-		if j, exists := numMap[complement]; exists {
-			return []int{j, i}
-		}
-		numMap[num] = i
+	if head == nil || head.Next == nil {
+		return head
 	}
 
-	return []int{}
+	var prev *ListNode = nil
+	var cur *ListNode = head
+	var nxt *ListNode = nil
+
+	for cur != nil {
+		nxt = cur.Next
+		cur.Next = prev
+		prev = cur
+
+		cur = nxt
+	}
+	head = prev
+	return head
 }

@@ -1,15 +1,32 @@
 package solution
 
-func twoSum(nums []int, target int) []int {
-	numMap := make(map[int]int)
+type Foo struct {
+	firstDone  chan struct{}
+	secondDone chan struct{}
+}
 
-	for i, num := range nums {
-		complement := target - num
-		if j, exists := numMap[complement]; exists {
-			return []int{j, i}
-		}
-		numMap[num] = i
+func NewFoo() *Foo {
+	return &Foo{
+		firstDone:  make(chan struct{}),
+		secondDone: make(chan struct{}),
 	}
+}
 
-	return []int{}
+func (f *Foo) First(printFirst func()) {
+	// Do not change this line
+	printFirst()
+	close(f.firstDone)
+}
+
+func (f *Foo) Second(printSecond func()) {
+	<-f.firstDone
+	/// Do not change this line
+	printSecond()
+	close(f.secondDone)
+}
+
+func (f *Foo) Third(printThird func()) {
+	<-f.secondDone
+	// Do not change this line
+	printThird()
 }

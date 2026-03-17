@@ -38,3 +38,15 @@ func SerialzeToString(arr []int) string {
 	sb.WriteString("]")
 	return sb.String()
 }
+
+func printFirst() {
+	print("First")
+}
+
+func printSecond() {
+	print("Second")
+}
+
+func printThird() {
+	print("Third")
+}

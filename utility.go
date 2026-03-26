@@ -50,3 +50,7 @@ func printSecond() {
 func printThird() {
 	print("Third")
 }
+
+type HtmlParser interface {
+	GetUrls(url string) []string
+}
